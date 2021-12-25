@@ -1,0 +1,20 @@
+{
+  "name": "redstone-sw-express-cache",
+  "version": "1.0.0",
+  "description": "A simple node/express app that shows how to serve SmartWeave contract state",
+  "main": "app.js",
+  "repository": "git@github.com:redstone-finance/redstone-sw-express-cache.git",
+  "author": "ppedziwiatr <peter@redstone.finance>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "arweave": "^1.10.19",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "knex": "^0.95.14",
+    "redstone-smartweave": "^0.4.8",
+    "sqlite3": "^5.0.2"
+  }
+}

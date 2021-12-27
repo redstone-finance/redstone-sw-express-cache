@@ -1099,10 +1099,10 @@ rechoir@0.7.0:
   dependencies:
     resolve "^1.9.0"
 
-redstone-smartweave@^0.4.8:
-  version "0.4.8"
-  resolved "https://registry.yarnpkg.com/redstone-smartweave/-/redstone-smartweave-0.4.8.tgz#43afefadb2f20213f60ecca2483c089f333c5766"
-  integrity sha512-Itm0Ej2siGSSmbPCFhrBF3UeCPrvgzlMsm7hVV1e5TzstBrQuHIbvXTfJfajKCiLczmNkcU1yeCzS4B1rVkpOQ==
+redstone-smartweave@^0.4.9:
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/redstone-smartweave/-/redstone-smartweave-0.4.9.tgz#ab04adaa421b579ee723e20ae29ddec5ccd5316d"
+  integrity sha512-ReSj8WNQZ5AW/khbZNta8jof1dPP7lUxLDNUsJMyrCVCY88QC3n0NTzEIoqwRtiw+IKJGVFoyc/npXZcerWSgA==
   dependencies:
     "@weavery/clarity" "^0.1.5"
     arweave "^1.10.16"

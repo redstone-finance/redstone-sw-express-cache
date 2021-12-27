@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "knex": "^0.95.14",
-    "redstone-smartweave": "^0.4.8",
+    "redstone-smartweave": "^0.4.9",
     "sqlite3": "^5.0.2"
   }
 }

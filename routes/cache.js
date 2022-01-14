@@ -60,7 +60,7 @@ module.exports.init = async function () {
 };
 
 (async () => {
-  LoggerFactory.INST.logLevel("error");
+  LoggerFactory.INST.logLevel("fatal");
   async function worker() {
     const contracts = await safeContracts();
     console.log(`Loading state for ${contracts.length} contracts`);

@@ -31,6 +31,7 @@ router.get("/state/:contractTxId", async function (req, res, next) {
   const { contractTxId } = req.params;
   const isSafe = await isSafeContract(contractTxId);
   if (!isSafe) {
+    res.status(404);
     res.send("Contract not registered as safe!");
   } else {
     const result = await sdk.contract(contractTxId).readState();

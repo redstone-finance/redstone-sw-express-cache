@@ -82,14 +82,14 @@ module.exports.init = async function () {
   (function workerLoop() {
     setTimeout(async function () {
       console.log("Starting worker");
-      worker()
-        .then(() => {
-          console.log(`Task completed.`);
-        })
-        .catch((r) => {
-          console.log(`Task error.`, r);
-        });
+
+      try {
+        await worker();
+      } catch (e) {
+        console.error(e);
+      }
+
       workerLoop();
-    }, 1000 * 60 * 5);
+    }, 1000 * 60 * 10);
   })();
 })();

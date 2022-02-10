@@ -2,8 +2,12 @@
 const Undici = require('undici');
 const fetch = Undici.fetch;
 
-module.exports.safeContracts = async function() {
-  const response = await fetch(`https://gateway.redstone.finance/gateway/contracts-safe`)
+module.exports.safeContracts = async function(testnet = false) {
+  const url = testnet
+    ? 'https://d2v8ja5p4ag05d.cloudfront.net/gateway/contracts-safe'
+    : `https://gateway.redstone.finance/gateway/contracts-safe`;
+
+  const response = await fetch(url)
     .then(res => {
       return res.ok ? res.json() : Promise.reject(res);
     })
@@ -17,7 +21,7 @@ module.exports.safeContracts = async function() {
   return response;
 }
 
-module.exports.isSafeContract = async function(id) {
-  const safe = await module.exports.safeContracts();
+module.exports.isSafeContract = async function(id, testnet = false) {
+  const safe = await module.exports.safeContracts(testnet);
   return safe.find(c => c.contract_id === id) !== undefined;
 }

@@ -58,16 +58,22 @@ module.exports.init = async function () {
     )
     .build();
   console.log("[testnet] SDK initialized");
+
+  startWorker()
+      .catch(e => {
+        console.error(e);
+      });
 };
 
-(async () => {
+async function startWorker() {
   LoggerFactory.INST.logLevel("fatal");
+
   async function worker() {
     const contracts = await safeContracts(true);
     console.log(`[testnet] Loading state for ${contracts.length} contracts`);
     for (let contract of contracts) {
       console.log(
-        `[testnet] Loading ${contract.contract_id}: ${contracts.indexOf(contract) + 1} / ${contracts.length}`
+          `[testnet] Loading ${contract.contract_id}: ${contracts.indexOf(contract) + 1} / ${contracts.length}`
       );
       try {
         await sdk.contract(contract.contract_id).readState();
@@ -92,4 +98,4 @@ module.exports.init = async function () {
       workerLoop();
     }, 1000 * 60 * 10);
   })();
-})();
+}

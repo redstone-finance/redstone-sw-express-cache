@@ -32,7 +32,7 @@ router.get("/state/:contractTxId", async function (req, res, next) {
   const isSafe = await isSafeContract(contractTxId, true);
   if (!isSafe) {
     res.status(404);
-    res.send("Contract not registered as safe!");
+    res.send("[testnet] Contract not registered as safe!");
   } else {
     const result = await sdk.contract(contractTxId).readState();
     res.send(result);
@@ -57,17 +57,17 @@ module.exports.init = async function () {
       )
     )
     .build();
-  console.log("SDK initialized");
+  console.log("[testnet] SDK initialized");
 };
 
 (async () => {
   LoggerFactory.INST.logLevel("fatal");
   async function worker() {
     const contracts = await safeContracts(true);
-    console.log(`Loading state for ${contracts.length} contracts`);
+    console.log(`[testnet] Loading state for ${contracts.length} contracts`);
     for (let contract of contracts) {
       console.log(
-        `Loading ${contract.contract_id}: ${contracts.indexOf(contract) + 1} / ${contracts.length}`
+        `[testnet] Loading ${contract.contract_id}: ${contracts.indexOf(contract) + 1} / ${contracts.length}`
       );
       try {
         await sdk.contract(contract.contract_id).readState();
@@ -81,7 +81,7 @@ module.exports.init = async function () {
 
   (function workerLoop() {
     setTimeout(async function () {
-      console.log("Starting worker");
+      console.log("[testnet] Starting worker");
 
       try {
         await worker();

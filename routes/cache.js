@@ -58,13 +58,13 @@ module.exports.init = async function () {
     )
     .build();
   console.log("SDK initialized");
-  startWorker()
+  startWorker(sdk)
       .catch(e => {
         console.error(e);
       });
 };
 
-async function startWorker() {
+async function startWorker(sdk) {
   LoggerFactory.INST.logLevel("fatal");
   async function worker() {
     const contracts = await safeContracts();
@@ -76,16 +76,27 @@ async function startWorker() {
       let originalConsoleLog = console.log;
       console.log = function(){};
       try {
-        await sdk.contract(contract.contract_id).readState();
+        await sdk.contract(contract.contract_id)
+            .setEvaluationOptions({
+              manualCacheFlush: true
+            })
+            .readState();
       } catch (e) {
         console.error(e);
       } finally {
         console.log = originalConsoleLog;
       }
     }
+    console.log('Flushing cache...');
+    sdk.flushCache();
+    console.log('Flushed...');
   }
 
-  await worker();
+  try {
+    await worker();
+  } catch (e) {
+    console.error(e);
+  }
 
   (function workerLoop() {
     setTimeout(async function () {

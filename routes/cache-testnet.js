@@ -59,13 +59,13 @@ module.exports.init = async function () {
     .build();
   console.log("[testnet] SDK initialized");
 
-  startWorker()
+  startWorker(sdk)
       .catch(e => {
         console.error(e);
       });
 };
 
-async function startWorker() {
+async function startWorker(sdk) {
   LoggerFactory.INST.logLevel("fatal");
 
   async function worker() {
@@ -76,14 +76,25 @@ async function startWorker() {
           `[testnet] Loading ${contract.contract_id}: ${contracts.indexOf(contract) + 1} / ${contracts.length}`
       );
       try {
-        await sdk.contract(contract.contract_id).readState();
+        await sdk.contract(contract.contract_id)
+            .setEvaluationOptions({
+                manualCacheFlush: true
+            })
+            .readState();
       } catch (e) {
         console.error(e);
       }
     }
+    console.log('[testnet] Flushing cache...');
+    sdk.flushCache();
+    console.log('[testnet] Flushed...');
   }
 
-  await worker();
+  try {
+    await worker();
+  } catch (e) {
+    console.error(e);
+  }
 
   (function workerLoop() {
     setTimeout(async function () {

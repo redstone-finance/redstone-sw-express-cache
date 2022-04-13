@@ -23,7 +23,7 @@ app.use('/testnet/cache', testnetCacheRouter.router)
 
 app.listen(5777, async () => {
     console.log("Initializing SDK");
-    //await testnetCacheRouter.init();
+    await testnetCacheRouter.init();
     await cacheRouter.init();
     console.info(`Express api listening at http://localhost:5777`);
 });

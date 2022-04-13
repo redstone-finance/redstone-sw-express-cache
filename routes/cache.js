@@ -78,7 +78,7 @@ async function startWorker(sdk) {
       try {
         await sdk.contract(contract.contract_id)
             .setEvaluationOptions({
-              manualCacheFlush: true
+              manualCacheFlush: true,
             })
             .readState();
       } catch (e) {

@@ -45,13 +45,13 @@ module.exports.init = async function () {
   sdk = (await SmartWeaveNodeFactory.knexCachedBased(arweave, knexConfig, 1))
     .setInteractionsLoader(
       new RedstoneGatewayInteractionsLoader(
-        "https://gateway.redstone.finance",
+        "https://d1o5nlqr4okus2.cloudfront.net",
         { notCorrupted: true }
       )
     )
     .setDefinitionLoader(
       new RedstoneGatewayContractDefinitionLoader(
-        "https://gateway.redstone.finance",
+        "https://d1o5nlqr4okus2.cloudfront.net",
         arweave,
         new MemCache()
       )

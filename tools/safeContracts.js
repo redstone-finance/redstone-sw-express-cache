@@ -5,7 +5,7 @@ const fetch = Undici.fetch;
 module.exports.safeContracts = async function(testnet = false) {
   const url = testnet
     ? 'https://d2v8ja5p4ag05d.cloudfront.net/gateway/contracts-safe'
-    : `https://gateway.redstone.finance/gateway/contracts-safe`;
+    : `https://d1o5nlqr4okus2.cloudfront.net/gateway/contracts-safe`;
 
   const response = await fetch(url)
     .then(res => {

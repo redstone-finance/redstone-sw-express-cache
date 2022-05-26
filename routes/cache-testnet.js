@@ -43,6 +43,7 @@ module.exports.router = router;
 
 module.exports.init = async function () {
   sdk = (await SmartWeaveNodeFactory.knexCachedBased(arweave, knexConfig, 1))
+    .useArweaveGateway()
     .setInteractionsLoader(
       new RedstoneGatewayInteractionsLoader(
         "https://d2v8ja5p4ag05d.cloudfront.net",
